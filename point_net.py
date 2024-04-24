@@ -60,7 +60,14 @@ class Tnet(nn.Module):
 
 # PointNet Backbone 
 class PointNetBackbone(nn.Module):
+    ''' PointNet Backbone '''
     def __init__(self, num_points=2500, num_global_feats=1024, local_feat=True):
+        '''
+        Args:
+        num_points: number of points in the point cloud
+        num_global_feats: number of global features to output
+        local_feat: if true, concatenate local and global features
+        '''
         super(PointNetBackbone, self).__init__()
 
         # if true concat local and global features
@@ -138,6 +145,12 @@ class PointNetBackbone(nn.Module):
 class PointNetClassHead(nn.Module):
     '''' Classification Head '''
     def __init__(self, num_points=2500, num_global_feats=1024, k=2):
+        '''
+        Args:
+        num_points: number of points in the point cloud
+        num_global_feats: number of global features to output
+        k: number of classes
+        '''
         super(PointNetClassHead, self).__init__()
 
         # get the backbone (only need global features for classification)
@@ -174,6 +187,12 @@ class PointNetClassHead(nn.Module):
 class PointNetSegHead(nn.Module):
     ''' Segmentation Head '''
     def __init__(self, num_points=2500, num_global_feats=1024, m=2):
+        '''
+        Args:
+        num_points: number of points in the point cloud
+        num_global_feats: number of global features to output
+        m: number of classes
+        '''
         super(PointNetSegHead, self).__init__()
 
         self.num_points = num_points
